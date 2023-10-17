@@ -1,19 +1,25 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-       
-       let sum = 400; 
-       if (sum > 400) {
-       alert (' Сума більше ніж ' + sum)}   
-       else
-       alert (' Сума менше ніж ' + sum)
-
-    </script>
+    <title>task</title>
 </head>
+<body>
+    <textarea id="textInput" placeholder="Введіть текст"></textarea>
+    <button onclick="displayText()">Відправити</button>
 
+    <script>
+        function displayText() {
+            let inputText = document.getElementById('textInput').value;
+            
+            if (inputText !== '') {
+                alert('Ви ввели: ' + inputText);
+            } else {
+                alert('Ви нічого не ввели.');
+            }
+        }
+    </script>
+</body>
 </html>
