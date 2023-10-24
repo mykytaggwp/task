@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>task</title>
+    <title>task java</title>
 </head>
 <body>
-    <textarea id="textInput" placeholder="Введіть текст"></textarea>
-    <button onclick="displayText()">Відправити</button>
+    <h1>Перевірка наявності ніка гравця</h1>
+    <p>Список ніків гравців: Mike, Alex, Anna, Nik, Elena</p>
+
+    <input type="text" id="nicknameInput" placeholder="Введіть нік">
+    <button onclick="checkNickname()">Перевірити</button>
+
+    <p id="result"></p>
 
     <script>
-        function displayText() {
-            let inputText = document.getElementById('textInput').value;
-            
-            if (inputText !== '') {
-                alert(inputText);
+        const playerNicknames = ["Mike", "Alex", "Anna", "Nik", "Elena"];
+
+        function checkNickname() {
+            const enteredNickname = document.getElementById("nicknameInput").value;
+            const resultElement = document.getElementById("result");
+
+            if (playerNicknames.includes(enteredNickname)) {
+                resultElement.textContent = "Такий нік є в списку гравців.";
             } else {
-                alert('Ви нічого не ввели.');
+                resultElement.textContent = "Такого ніка немає в списку гравців.";
             }
         }
     </script>
