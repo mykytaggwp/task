@@ -10,6 +10,9 @@
     <input type="text" id="nicknameInput" placeholder="Введіть нік">
     <button onclick="checkNickname()">Перевірити</button>
 
+    <input type="text" id="addNicknameInput" placeholder="Додати нік">
+    <button onclick="addPlayer()">Додати гравця</button>
+
     <p id="result"></p>
 
     <script>
@@ -25,6 +28,20 @@
                 resultElement.textContent = "Такого ніка немає в списку гравців.";
             }
         }
+
+    
+        function addPlayer() {
+            const newNickname = document.getElementById("addNicknameInput").value;
+            const resultElement = document.getElementById("result");
+
+            if (newNickname) {
+                playerNicknames.push(newNickname);
+                resultElement.textContent = `Гравця з ніком "${newNickname}" додано до списку.`;
+            } else {
+                resultElement.textContent = "Будь ласка, введіть ім'я гравця для додавання.";
+            }
+        }
+        
     </script>
 </body>
 </html>
