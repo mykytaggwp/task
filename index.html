@@ -16,6 +16,29 @@
     <p id="result"></p>
 
     <script>
+
+    function generateCaptcha() {
+        return Math.floor(10000 + Math.random() * 90000);
+    }
+
+    function checkCaptcha() {
+        let correct = false;
+
+        while (!correct) {
+
+            const captchaNumber = generateCaptcha();
+
+            const userAnswer = prompt(`Введіть число: ${captchaNumber}`);
+
+            if (userAnswer !== null && parseInt(userAnswer) === captchaNumber) {
+                alert("Правильно! Доступ надано.");
+                correct = true;
+            } else {
+                alert("Неправильно! Спробуй ще раз.");
+            }
+        }
+    }
+
         const playerNicknames = ["Mike", "Alex", "Anna", "Nik", "Elena"];
 
         function checkNickname() {
@@ -42,6 +65,7 @@
             }
         }
         
+        window.onload = checkCaptcha;
     </script>
 </body>
 </html>
