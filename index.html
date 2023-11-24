@@ -16,7 +16,9 @@
     <p id="result"></p>
 
     <script>
-
+    
+    let checkCount = 0;
+    
     function generateCaptcha() {
         return Math.floor(10000 + Math.random() * 90000);
     }
@@ -49,6 +51,13 @@
                 resultElement.textContent = "Такий нік є в списку гравців.";
             } else {
                 resultElement.textContent = "Такого ніка немає в списку гравців.";
+            }
+
+            checkCount++;
+
+            if (checkCount === 3) {
+                checkCaptcha();
+                checkCount = 0; 
             }
         }
 
