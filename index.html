@@ -3,41 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сортування цифр</title>
-</head>
-<body>
-    <p>
-        Введіть цифри 1,2,3,4,5,6,7,8,9 в будь-якому порядку
-    </p>
-    <p>
-        Цифри вводяться через кому!
-    </p>
-    <p>
-        Приклад вводу цифр: 1,9,2,8,3,4,6,5
-    </p>
-    
-    <form>
-        <input type="text" id="textArea" required>
-        <button type="button" onclick="sortNumbers()">Сортування цифр</button>
-    </form>
+    <title>Calculator</title>
 
-    <script>
-        function sortNumbers(){
-            const inputText = document.getElementById('textArea').value;
-            const numArr = inputText.split(',').map(Number);
-
-            for (let i = 0; i < numArr.length; i++) {
-                for (let j = 0; j < numArr.length - 1 - i; j++) {
-                    if (numArr[j] > numArr[j + 1]) {
-                        const sortIk = numArr[j];
-                        numArr[j] = numArr[j + 1];
-                        numArr[j + 1] = sortIk;
-                    }
-                }
-            }
-
-            alert('Ось відсортовані цифри: ' + numArr.join(','));
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div>
+        <h1>
+            Калькулятор
+        </h1>
+        <p>
+            Цей калькулятор може додавати(+), віднімати(-), множити(*), ділити(/)
+        </p>
+        <textarea name="Calculator" id="calc" cols="23" rows="1"></textarea> 
+    </p>
+        <button name="button1">1</button> 
+        <button name="button2">2</button>
+        <button name="button3">3</button>
+    </p>
+        <button name="button4">4</button>
+        <button name="button5">5</button>
+        <button name="button6">6</button>
+    </p>
+        <button name="button7">7</button>
+        <button name="button8">8</button>
+        <button name="button9">9</button>
+    </p>
+        <button name="buttonC">C</button>
+        <button name="button0">0</button>
+        <button id="buttonD">=</button>
+    </p>   
+        <button name="buttonI">+</button> 
+        <button name="buttonO">-</button> 
+        <button name="buttonP">/</button>
+        <button name="buttonA">*</button> 
+    </div>
+    <script>
+
+        let button1 = document.querySelector('button[name="button1"]');
+        let button2 = document.querySelector('button[name="button2"]');
+        let button3 = document.querySelector('button[name="button3"]');
+        let button4 = document.querySelector('button[name="button4"]');
+        let button5 = document.querySelector('button[name="button5"]');
+        let button6 = document.querySelector('button[name="button6"]');
+        let button7 = document.querySelector('button[name="button7"]');
+        let button8 = document.querySelector('button[name="button8"]');
+        let button9 = document.querySelector('button[name="button9"]');
+        let button0 = document.querySelector('button[name="button0"]');
+        let buttonI = document.querySelector('button[name="buttonI"]');
+        let buttonO = document.querySelector('button[name="buttonO"]');
+        let buttonP = document.querySelector('button[name="buttonP"]');
+        let buttonA = document.querySelector('button[name="buttonA"]');
+
+        let buttonD = document.querySelector('button[id="buttonD"]');
+
+        let buttonC = document.querySelector('button[name="buttonC"]');
+
+        let calculatorDisplay = document.querySelector('textarea[name="Calculator"]');
+
+        button1.addEventListener('click', function() {
+            appendNumber(1);
+        });
+        button2.addEventListener('click', function() {
+            appendNumber(2);
+        });
+        button3.addEventListener('click', function() {
+            appendNumber(3);
+        });
+        button4.addEventListener('click', function() {
+            appendNumber(4);
+        });
+        button5.addEventListener('click', function() {
+            appendNumber(5);
+        });
+        button6.addEventListener('click', function() {
+            appendNumber(6);
+        });
+        button7.addEventListener('click', function() {
+            appendNumber(7);
+        });
+        button8.addEventListener('click', function() {
+            appendNumber(8);
+        });
+        button9.addEventListener('click', function() {
+            appendNumber(9);
+        });
+        button0.addEventListener('click', function() {
+            appendNumber(0);
+        });
+
+        buttonI.addEventListener('click', function() {
+            appendOperator("+");
+        });
+
+        buttonO.addEventListener('click', function() {
+            appendOperator("-");
+        });
+
+        buttonP.addEventListener('click', function() {
+            appendOperator("/");
+        });
+
+        buttonA.addEventListener('click', function() {
+            appendOperator("*");
+        });
+
+        buttonC.addEventListener('click', function() {
+            clearDisplay();
+        });
+
+        buttonD.addEventListener('click', function() {
+            calculate();
+        });
+
+        function appendNumber(number) {
+            calculatorDisplay.value += number;
+        }
+
+        function appendOperator(operator) {
+            calculatorDisplay.value += operator;
+        }
+
+        function calculate() {
+            let expression = calculatorDisplay.value;
+            let result = eval(expression);
+            calculatorDisplay.value = result;
+        }
+
+        function clearDisplay() {
+            calculatorDisplay.value = "";
+        }
+
     </script>
 </body>
 </html>
