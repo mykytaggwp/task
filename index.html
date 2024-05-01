@@ -6,64 +6,65 @@
     <title>Calculator</title>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
 
-        .calculator {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
+    body {
+        background-color: green;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-        h1 {
-            font-size: 24px;
-            margin-top: 0;
-        }
+    .Calculator1 {
+        margin: 0 auto;
+        text-align: center; 
+        margin-bottom: 40px;
+    }   
 
-        p {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
+    .Calculator2 {
+        margin: 0 auto;
+        text-align: center;
+    }
 
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            resize: none;
-        }
+    .button {
+        margin-right: 15px; 
+        padding: 10px 15px; 
+    }
 
-        button {
-            padding: 10px 20px;
-            margin: 5px;
-            font-size: 18px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            background-color: #4caf50;
-            color: #fff;
-            transition: background-color 0.3s;
-        }
+    #Calculator {
+        width: 210px; 
+        height: 20px;
+    }
 
-        button:hover {
-            background-color: #45a049;
-        }
+    #pov1 {
+        width: 200px; 
+        height: 20px;
+    }
+
+    #test1 {
+        width: 200px; 
+        height: 20px;
+    }
+
+    #test2 {
+        width: 200px; 
+        height: 20px;
+    }
+
+    #test3 {
+        width: 200px; 
+        height: 20px;
+    }
+
+    #test4 {
+        width: 200px; 
+        height: 20px;
+    }
+
     </style>
     
 </head>
 
 <body>
-    <div>
+    <div class="Calculator1">
         <h1>
             Калькулятор
         </h1>
@@ -71,28 +72,47 @@
             Цей калькулятор може додавати(+), віднімати(-), множити(*), ділити(/)
         </p>
         <textarea name="Calculator" id="calc" cols="23" rows="1"></textarea> 
-    </p>
-        <button name="button1">1</button> 
-        <button name="button2">2</button>
-        <button name="button3">3</button>
-    </p>
-        <button name="button4">4</button>
-        <button name="button5">5</button>
-        <button name="button6">6</button>
-    </p>
-        <button name="button7">7</button>
-        <button name="button8">8</button>
-        <button name="button9">9</button>
-    </p>
-        <button name="buttonC">C</button>
-        <button name="button0">0</button>
-        <button id="buttonD">=</button>
-    </p>   
-        <button name="buttonI">+</button> 
-        <button name="buttonO">-</button> 
-        <button name="buttonP">/</button>
-        <button name="buttonA">*</button> 
+        <p>
+            <button name="button1" class="button">1</button> 
+            <button name="button2" class="button">2</button>
+            <button name="button3" class="button">3</button>
+        </p>
+        <p>
+            <button name="button4" class="button">4</button>
+            <button name="button5" class="button">5</button>
+            <button name="button6" class="button">6</button>
+        </p>
+        <p>
+            <button name="button7" class="button">7</button>
+            <button name="button8" class="button">8</button>
+            <button name="button9" class="button">9</button>
+        </p>
+        <p>
+            <button name="buttonC" class="button">C</button>
+            <button name="button0" class="button">0</button>
+            <button id="buttonD" class="button">=</button>
+        </p>   
+        <p>
+            <button name="buttonI" class="button">+</button> 
+            <button name="buttonO" class="button">-</button> 
+            <button name="buttonP" class="button">/</button>
+            <button name="buttonA" class="button">*</button>
+        </p>
     </div>
+
+    <div class="Calculator2">
+        <p>Тест на порівнювання</p>
+        <textarea name="pov1" id="pov1" cols="5" rows="1"></textarea>
+        <p>Тест на додавання</p>
+        <textarea  name="test1" id="test1" cols="5" rows="1"></textarea>
+        <p>Тест на відінмання</p>
+        <textarea  name="test2" id="test2" cols="5" rows="1"></textarea>
+        <p>Тест на множення</p>
+        <textarea  name="test3" id="test3" cols="5" rows="1"></textarea>
+        <p>Тест на ділення</p>
+        <textarea  name="test4" id="test4" cols="5" rows="1"></textarea>
+    </div>
+
     <script>
 
         let button1 = document.querySelector('button[name="button1"]');
@@ -173,22 +193,73 @@
 
         function appendNumber(number) {
             calculatorDisplay.value += number;
-        }
+}
 
         function appendOperator(operator) {
             calculatorDisplay.value += operator;
-        }
+}
 
         function calculate() {
             let expression = calculatorDisplay.value;
             let result = eval(expression);
             calculatorDisplay.value = result;
-        }
+}
 
         function clearDisplay() {
             calculatorDisplay.value = "";
+}
+
+    
+        function testClick() {
+            button1.click();   
+            button0.click(); 
+}
+
+        function calculate() {
+            let expression = calculatorDisplay.value;
+            let result = eval(expression);
+            calculatorDisplay.value = result;
+            document.getElementById("pov1").value = result;
+            testCompareValues(); 
+}
+
+        function testCompareValues() {
+            let expectedValue = 10;
+            let actualValue = parseFloat(calculatorDisplay.value); 
+        if (expectedValue === actualValue) {
+            document.getElementById("pov1").value = "Тест пройшов успішно!";
+        } else {
+            document.getElementById("pov1").value = "Тест не пройшов. Очікуване значення:" + expectedValue + ", Отримане значення:" + actualValue;
         }
+}
+
+        
+        function testOperation(operation, operand1, operand2, expected, resultTextarea) {
+            calculatorDisplay.value = "";
+            appendNumber(operand1);
+            appendOperator(operation);
+            appendNumber(operand2); 
+            buttonD.click(); 
+            let actual = parseFloat(calculatorDisplay.value);
+        if (actual === expected) {
+            resultTextarea.value = "Тест пройшов успішно!";
+        } else {
+            resultTextarea.value = `Тест не пройшов. Отримане значення: ${actual}`;
+        }
+        console.log(`Тест для операції ${operand1} ${operation} ${operand2}:`, resultTextarea.value);
+}
+
+        testOperation("+", 5, 3, 8, document.getElementById("test1"));
+        testOperation("-", 10, 4, 6, document.getElementById("test2")); 
+        testOperation("*", 2, 5, 10, document.getElementById("test3")); 
+        testOperation("/", 15, 3, 5, document.getElementById("test4")); 
+
+
+    clearDisplay()
+    testClick();
+    testCompareValues();
 
     </script>
+
 </body>
 </html>
