@@ -8,14 +8,14 @@
     <style>
 
     body {
-        background-color: green;
-        color: white;
+        background-color: rgb(255, 204, 0);
+        color: rgb(0, 0, 0);
         font-family: Arial, Helvetica, sans-serif;
     }
 
     .Calculator1 {
         margin: 0 auto;
-        text-align: center; 
+        text-align: center;
         margin-bottom: 40px;
     }   
 
@@ -34,7 +34,7 @@
         height: 20px;
     }
 
-    #pov1 {
+    #click1 {
         width: 200px; 
         height: 20px;
     }
@@ -59,6 +59,13 @@
         height: 20px;
     }
 
+    .buttonX {
+        width: 205px;
+        height: 25px;
+        background-color: aqua;
+    }
+
+    
     </style>
     
 </head>
@@ -101,8 +108,9 @@
     </div>
 
     <div class="Calculator2">
-        <p>Тест на порівнювання</p>
-        <textarea name="pov1" id="pov1" cols="5" rows="1"></textarea>
+        <h1>Тести до калькулятора</h1>
+        <p>Клік на кнопку 8</p>
+        <textarea name="click1" id="click1" cols="5" rows="1"></textarea>
         <p>Тест на додавання</p>
         <textarea  name="test1" id="test1" cols="5" rows="1"></textarea>
         <p>Тест на відінмання</p>
@@ -208,57 +216,123 @@
         function clearDisplay() {
             calculatorDisplay.value = "";
 }
-
-    
         function testClick() {
-            button1.click();   
-            button0.click(); 
-}
-
-        function calculate() {
-            let expression = calculatorDisplay.value;
-            let result = eval(expression);
-            calculatorDisplay.value = result;
-            document.getElementById("pov1").value = result;
-            testCompareValues(); 
-}
-
-        function testCompareValues() {
-            let expectedValue = 10;
-            let actualValue = parseFloat(calculatorDisplay.value); 
-        if (expectedValue === actualValue) {
-            document.getElementById("pov1").value = "Тест пройшов успішно!";
+            button8.click();
+            let actualValue = calculatorDisplay.value;
+            let expectedValue = "8";
+            let resultTextarea = document.getElementById("click1");
+        if (actualValue === expectedValue) {
+            resultTextarea.value = `Тест пройшов успішно! Отримане значення: ${actualValue}. Очікуване значення: ${expectedValue}.`;
+            resultTextarea.style.color = 'green';
         } else {
-            document.getElementById("pov1").value = "Тест не пройшов. Очікуване значення:" + expectedValue + ", Отримане значення:" + actualValue;
-        }
+            resultTextarea.value = `Тест не пройшов. Отримане значення: ${actualValue}. Очікуване значення: ${expectedValue}.`;
+            resultTextarea.style.color = 'red';
+    }
+        clearDisplay();
 }
 
-        
-        function testOperation(operation, operand1, operand2, expected, resultTextarea) {
-            calculatorDisplay.value = "";
-            appendNumber(operand1);
-            appendOperator(operation);
+        function testAddition() {
+            let expected = 16; 
+            let operand1 = 8;
+            let operand2 = 8;
+            calculatorDisplay.value = ""; 
+            appendNumber(operand1); 
+            appendOperator("+"); 
             appendNumber(operand2); 
             buttonD.click(); 
             let actual = parseFloat(calculatorDisplay.value);
+            let resultTextarea = document.getElementById("test1"); 
         if (actual === expected) {
-            resultTextarea.value = "Тест пройшов успішно!";
+            resultTextarea.value = `Тест пройшов успішно! Отримане значення: ${actual}. Очікуване значення: ${expected}.`;
+            resultTextarea.style.color = 'green'; 
         } else {
-            resultTextarea.value = `Тест не пройшов. Отримане значення: ${actual}`;
-        }
-        console.log(`Тест для операції ${operand1} ${operation} ${operand2}:`, resultTextarea.value);
+            resultTextarea.value = `Тест не пройшов. Отримане значення: ${actual}. Очікуване значення: ${expected}.`;
+            resultTextarea.style.color = 'red'; 
+    }
+    clearDisplay(); 
 }
 
-        testOperation("+", 5, 3, 8, document.getElementById("test1"));
-        testOperation("-", 10, 4, 6, document.getElementById("test2")); 
-        testOperation("*", 2, 5, 10, document.getElementById("test3")); 
-        testOperation("/", 15, 3, 5, document.getElementById("test4")); 
+        function testSubtraction() {
+            let expected = 10;
+            let operand1 = 20;
+            let operand2 = 10;
+            calculatorDisplay.value = ""; 
+            appendNumber(operand1); 
+            appendOperator("-"); 
+            appendNumber(operand2); 
+            buttonD.click(); 
+            let actual = parseFloat(calculatorDisplay.value);
+            let resultTextarea = document.getElementById("test2");
+        if (actual === expected) {
+            resultTextarea.value = `Тест пройшов успішно! Отримане значення: ${actual}. Очікуване значення: ${expected}.`;
+            resultTextarea.style.color = 'green'; 
+        } else {
+            resultTextarea.value = `Тест не пройшов. Отримане значення: ${actual}. Очікуване значення: ${expected}.`;
+            resultTextarea.style.color = 'red'; 
+    }
+    clearDisplay(); 
+}        
+
+        function testMultiplication() {
+            let expected = 63;
+            let operand1 = 7;
+            let operand2 = 9;
+            calculatorDisplay.value = ""; 
+            appendNumber(operand1); 
+            appendOperator("*"); 
+            appendNumber(operand2); 
+            buttonD.click();
+            let actual = parseFloat(calculatorDisplay.value);
+            let resultTextarea = document.getElementById("test3"); 
+        if (actual === expected) {
+            resultTextarea.value = `Тест пройшов успішно! Отримане значення: ${actual}. Очікуване значення: ${expected}.`;
+            resultTextarea.style.color = 'green'; 
+        } else {
+            resultTextarea.value = `Тест не пройшов. Отримане значення: ${actual}. Очікуване значення: ${expected}.`;
+            resultTextarea.style.color = 'red'; 
+    }
+    clearDisplay(); 
+}
+
+        function testDivision() {
+            let expected = 7;
+            let operand1 = 21;
+            let operand2 = 3;
+            calculatorDisplay.value = ""; 
+            appendNumber(operand1); 
+            appendOperator("/"); 
+            appendNumber(operand2); 
+            buttonD.click(); 
+            let actual = parseFloat(calculatorDisplay.value);
+            let resultTextarea = document.getElementById("test4");
+        if (actual === expected) {
+            resultTextarea.value = `Тест пройшов успішно! Отримане значення: ${actual}. Очікуване значення: ${expected}.`;
+            resultTextarea.style.color = 'green'; 
+        } else {
+            resultTextarea.value = `Тест не пройшов. Отримане значення: ${actual}. Очікуване значення: ${expected}.`;
+            resultTextarea.style.color = 'red';
+    }
+    clearDisplay(); 
+}
 
 
-    clearDisplay()
-    testClick();
-    testCompareValues();
+        function appendNumber(number) {
+            calculatorDisplay.value += number;
+}
 
+        function appendOperator(operator) {
+            calculatorDisplay.value += operator;
+}
+
+clearDisplay();
+testClick();
+testAddition();
+testSubtraction();
+testMultiplication();
+testDivision();
+
+
+clearDisplay();
     </script>
 
 </body>
